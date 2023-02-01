@@ -11,20 +11,11 @@ class NegociacaoController {
 
         event.preventDefault();
 
-        let	negociacao	=	new	Negociacao(
-        DateConverter.paraData(this._inputData.value),
-        parseInt(this._inputQuantidade.value),
-        parseFloat(this._inputValor.value)
-         );
-
-        this._negociacoes.adiciona(negociacao);
+        this._negociacoes.adiciona(this._criaNegociacao());
+       
 
         console.log(this._negociacoes.paraArray());
-
-        console.log(negociacao.data);
-
-        let	diaMesAno=DateConverter.paraTexto(negociacao.data);
-        console.log(diaMesAno);
+        
         this._limpaFormulario();
 
      
@@ -35,4 +26,11 @@ class NegociacaoController {
             this._inputValor.value = 0.0
             this._inputData.focus();
          }
+         _criaNegociacao()	{
+            return new	Negociacao(
+            DateConverter.paraData(this._inputData.value),
+            parseInt(this._inputQuantidade.value),
+            parseFloat(this._inputValor.value)
+                );	
+                }
 }
