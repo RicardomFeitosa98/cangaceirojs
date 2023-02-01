@@ -8,10 +8,10 @@ class	NegociacoesView	{
             }
 
 
-	template(model)	{
-        return	`
-	<table	class="table	table-hover	table-bordered">
-     <thead>
+            template(model)	{
+                return	`
+                    <table	class="table table-hover table-bordered">
+                <thead>
                 <tr>
                 <th>DATA</th>
                 <th>QUANTIDADE</th>
@@ -20,19 +20,23 @@ class	NegociacoesView	{
                             </tr>
                 </thead>
                 <tbody>
-                ${model.paraArray().map(negociacao	=>	{
-                    return	`
+                    ${model.paraArray().map(negociacao	=>	
+                    `
                 <tr>
-                <td>${DateConverter.paraTexto(negociacao.data)}</td>
+                <td>${DateConverter.paraTexto(negociacao.data
+                )}</td>
                 <td>${negociacao.quantidade}</td>
                 <td>${negociacao.valor}</td>
                 <td>${negociacao.volume}</td>
                 </tr>
-                    `
-                    }).join('')}
-            </tbody>
-        <tfoot>
-    </tfoot>
+                            `).join('')}
+                </tbody>
+                <tfoot>
+                <tr>
+                <td	colspan="3"></td>
+                <td>${model.volumeTotal}</td>
+			</tr>
+                </tfoot>
     </table>
 	`
 	}
