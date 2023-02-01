@@ -7,18 +7,12 @@ class NegociacaoController {
         this._negociacoes = new Negociacoes();
             }
    
-    adiciona(event) {
-
+        adiciona(event)	{
         event.preventDefault();
-
         this._negociacoes.adiciona(this._criaNegociacao());
-        console.log(this._negociacoes.paraArray());
-        
         this._limpaFormulario();
-
-     
-   }
-   _limpaFormulario()	{
+        }
+         _limpaFormulario()	{
             this._inputData.value = '';
             this._inputQuantidade.value	= 1;
             this._inputValor.value = 0.0
