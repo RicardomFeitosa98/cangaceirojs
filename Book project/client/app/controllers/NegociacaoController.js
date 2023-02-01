@@ -25,6 +25,7 @@ class NegociacaoController {
 
         let	diaMesAno=DateConverter.paraTexto(negociacao.data);
         console.log(diaMesAno);
+        this._limpaFormulario();
 
      
    }
