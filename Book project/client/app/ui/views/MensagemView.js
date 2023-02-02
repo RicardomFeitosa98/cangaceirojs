@@ -8,4 +8,8 @@ class MensagemView{
 
         return	`<p	class="alert alert-info">${model.texto}</p>`;
     }
+
+    update(model) {
+        this._elemento.innerHTML = this.template(model)
+    }
 }
