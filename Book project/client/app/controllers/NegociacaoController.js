@@ -28,8 +28,13 @@ class NegociacaoController {
         }catch(err){
             console.log(err)
             this._mensagem.texto = err.message
+            if(err instanceof DataInvalidaException) {
+                this._mensagem.texto =	err.message;
+                } else {
+                    this._mensagem.texto = "um erro não esperado ocorreu, contate o suporte"
         }
     }
+}
 
     _limpaFormulario() {
 
