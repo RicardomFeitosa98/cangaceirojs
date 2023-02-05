@@ -4,7 +4,7 @@ class	ProxyFactory	{
         return new Proxy(objeto,{
             get(target, prop, receiver) {
             
-            if(typeof(target[prop]) == typeof(Function) && props.includes(prop)) {
+            if(ProxyFactory._ehFuncao(target[prop])&& props.includes(prop)) {
                     
                     return function() {
 
@@ -17,6 +17,19 @@ class	ProxyFactory	{
 
                 return target[prop];
             }
-        }})
+        },
+            set(target,prop,value,receiver) {
+                const  updated	=Reflect.set(target, prop, value)
+                if(props.includes(prop)) armadilha(target);
+                return	updated;
+
+
+
+            }});
 	}
+    static	_ehFuncao(fn)	{
+
+        return typeof(fn) == typeof(Function);
+
+            }
 }
