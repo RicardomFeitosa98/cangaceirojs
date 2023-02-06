@@ -1,7 +1,7 @@
 class NegociacaoService {
 
-    obterNegociacoesDaSemana(cb) {
-
+    obterNegociacoesDaSemana() {
+        return new Promise((resolve,	reject)	=>	{
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'negociacoes/semana');
 
@@ -15,15 +15,16 @@ class NegociacaoService {
                         .parse(xhr.responseText)
                         .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor));
                         
-                    cb(null, negociacoes);
+                    resolve(negociacoes);
 
                 } else {
                      console.log(xhr.responseText);
-                     cb('Não foi possível obter nas negociações da semana', null);
+                     reject('Não foi possível obter nas negociações da semana');
                 }
             }
         };
 
         xhr.send();
+    })
     }
 }
