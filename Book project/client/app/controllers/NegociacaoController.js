@@ -67,4 +67,7 @@ class NegociacaoController {
         this._negociacoes.esvazia();
         this._mensagem.texto = 'Negociações apagadas com sucesso';
     }
+    importaNegociacoes() {
+        alert('Importando negociações');
+        }
 }
