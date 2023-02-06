@@ -6,35 +6,44 @@ class NegociacaoController {
         this._inputData = $('#data');
         this._inputQuantidade = $('#quantidade');
         this._inputValor = $('#valor');
-        this._negociacoes =	new	Bind(
-            new	Negociacoes(),	
-            new	NegociacoesView('#negociacoes'),
-                ['adiciona',	'esvazia']
-                )
-        this._mensagem	= new Bind(
-            new	Mensagem(),	
-            new	MensagemView('#mensagemView'),
-                ['texto']
-                );
+
+        this._negociacoes = new Bind(
+            new Negociacoes(),
+            new NegociacoesView('#negociacoes'),
+            'adiciona', 'esvazia'
+        );
+
+        this._mensagem = new Bind(
+            new Mensagem(),
+            new MensagemView('#mensagemView'),
+            'texto'
+        );
     }
+
     adiciona(event) {
 
-        try{
-            const element = array[index];
+        try {
+
             event.preventDefault();
             this._negociacoes.adiciona(this._criaNegociacao());
             this._mensagem.texto = 'Negociação adicionada com sucesso';
             this._limpaFormulario();
-        }catch(err){
-            console.log(err)
-            this._mensagem.texto = err.message
-            if(err instanceof DataInvalidaException) {
-                this._mensagem.texto =	err.message;
-                } else {
-                    this._mensagem.texto = "um erro não esperado ocorreu, contate o suporte"
+
+        } catch (err) {
+
+            console.log(err);
+            console.log(err.stack);
+
+            if (err instanceof DataInvalidaException) {
+
+                this._mensagem.texto = err.message;
+
+            } else {
+
+                this._mensagem.texto = 'Um erro não esperado aconteceu. Entre em contato com o suporte';
+            }
         }
     }
-}
 
     _limpaFormulario() {
 
@@ -57,5 +66,5 @@ class NegociacaoController {
 
         this._negociacoes.esvazia();
         this._mensagem.texto = 'Negociações apagadas com sucesso';
-        }
+    }
 }
