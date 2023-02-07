@@ -1,11 +1,6 @@
-class DaoFactory{
+function getNegociacaoDao() {
 
-    static getNegociacaoDao(){
-
-        return ConnectionFactory
+    return ConnectionFactory
         .getConnection()
-        .then(conn=> new NegociacaoDao(conn))
-    }
-
-
+        .then(conn => new NegociacaoDao(conn));
 }
