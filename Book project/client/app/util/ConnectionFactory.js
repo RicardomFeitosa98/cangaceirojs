@@ -32,16 +32,21 @@ throw new Error('Não	é	possível	criar	instâncias	dessa	classe');
                 };
                 });
 	}
-    static	_createStores(connection)	{
-        stores.forEach(store	=>	{
+                static	_createStores(connection)	{
+                    stores.forEach(store	=>	{
 
-     if(connection.objectStoreNames.contains(store))
-         connection.deleteObjectStore(store);
+                if(connection.objectStoreNames.contains(store))
+                    connection.deleteObjectStore(store);
 
-        connection.createObjectStore(store,	{ autoIncrement:	
-    true });
-        });
-        }
-}
+                    connection.createObjectStore(store,	{ autoIncrement:	
+                true });
+                    });
+                    }
+                    static	closeConnection()	{
+                        if(connection)	{
+                            connection.close();
+                            }
+                    
+            } }
 }) ()
  
