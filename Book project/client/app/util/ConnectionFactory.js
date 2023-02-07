@@ -1,6 +1,7 @@
 const ConnectionFactory =  ( () => {
 const	stores	=	['negociacoes'];
 let connection = null
+let close = null
  return class	ConnectionFactory	{
 	constructor()	{
 throw new Error('Não	é	possível	criar	instâncias	dessa	classe');
@@ -20,6 +21,7 @@ throw new Error('Não	é	possível	criar	instâncias	dessa	classe');
                 };
                 openRequest.onsuccess = e	=>	{
                     connection = e.target.result
+                    close = connection.close.bind(connection)
                     connection.close	=	()	=>	{
                         throw new Error('Você não pode fechar diretamentea	conexão')
                     }
@@ -44,7 +46,7 @@ throw new Error('Não	é	possível	criar	instâncias	dessa	classe');
                     }
                     static	closeConnection()	{
                         if(connection)	{
-                            connection.close();
+                            close();
                             }
                     
             } }
