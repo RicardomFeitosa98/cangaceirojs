@@ -1,7 +1,11 @@
+export	class ConnectionFactory	{
+    /*	código	omitido	*/
+        }
 const ConnectionFactory =  ( () => {
 const	stores	=	['negociacoes'];
 let connection = null
 let close = null
+
  return class	ConnectionFactory	{
 	constructor()	{
 throw new Error('Não	é	possível	criar	instâncias	dessa	classe');

@@ -1,3 +1,7 @@
+import	{	DataInvalidaException	}	from	'./DataInvalidaException.js';
+	export	class DateConverter	{
+			/*	código	omitido	*/
+	}
 class DateConverter {
 
     constructor() {

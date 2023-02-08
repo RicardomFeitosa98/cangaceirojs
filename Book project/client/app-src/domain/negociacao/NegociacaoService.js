@@ -1,3 +1,8 @@
+import	{	HttpService	}	from	'../../util/HttpService.js';
+	import	{	Negociacao	}		from	'./Negociacao.js';
+	export	class NegociacaoService	{
+/*	código	omitido	*/
+	}
 class NegociacaoService {
 
     constructor() {

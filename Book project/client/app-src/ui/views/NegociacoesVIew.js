@@ -1,3 +1,8 @@
+import	{	View	}	from	'./View.js';
+		import	{	DateConverter	}	from	'../converters/DateConverter.js';
+	export	class NegociacoesView	extends	View	{
+
+	}
 class	NegociacoesView	extends View{
     
 template(model)	{

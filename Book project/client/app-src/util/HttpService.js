@@ -1,3 +1,6 @@
+export	class HttpService	{
+    /*	código	omitido	*/
+        }
 class	HttpService	{
 	get(url)	{
     return new Promise((resolve,	reject)	=>	{

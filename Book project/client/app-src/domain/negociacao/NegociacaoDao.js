@@ -1,3 +1,7 @@
+import	{	Negociacao	}	from	'./Negociacao.js';
+	export	class NegociacaoDao	{
+			/*	código	omitido	*/
+	}
 class NegociacaoDao {
 
     constructor(connection) {

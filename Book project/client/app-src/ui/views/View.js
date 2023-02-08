@@ -1,3 +1,6 @@
+export	class View	{
+    /*	código	omitido	*/
+        }
 class View{
 
     constructor(seletor){

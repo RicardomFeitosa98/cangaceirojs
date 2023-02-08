@@ -1,3 +1,6 @@
+export	class ProxyFactory	{
+    /*	código	omitido	*/
+        }
 class	ProxyFactory	{
 	static create(objeto,	props,	armadilha)	{
 

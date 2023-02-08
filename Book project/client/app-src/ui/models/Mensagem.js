@@ -1,3 +1,6 @@
+export	class Mensagem	{
+    
+        }
 class Mensagem {
     constructor(texto = ""){
      

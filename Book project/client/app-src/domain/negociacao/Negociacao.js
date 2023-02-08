@@ -1,3 +1,5 @@
+export	class Negociacao	{
+}
 class Negociacao {
 
     constructor(_data, _quantidade, _valor) {
