@@ -25,4 +25,4 @@ System.register(['./ProxyFactory.js'], function (_export, _context) {
         }
     };
 });
-//# sourceMappingURL=BInd.js.map
+//# sourceMappingURL=Bind.js.map

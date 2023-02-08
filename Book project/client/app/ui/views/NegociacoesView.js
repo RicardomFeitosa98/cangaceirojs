@@ -51,4 +51,4 @@ System.register(['./View.js', '../converters/DateConverter.js'], function (_expo
         }
     };
 });
-//# sourceMappingURL=NegociacoesVIew.js.map
+//# sourceMappingURL=NegociacoesView.js.map
