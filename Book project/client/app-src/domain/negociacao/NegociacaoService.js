@@ -1,5 +1,6 @@
-import { HttpService } from '../../util/HttpService.js';
-import { Negociacao } from './Negociacao.js';
+import { HttpService } from '../../util/HttpService';
+import { Negociacao } from './Negociacao';
+import { ApplicationException } from '../../util/ApplicationException';
 
 export class NegociacaoService {
 
@@ -9,65 +10,65 @@ export class NegociacaoService {
     }
 
     obtemNegociacoesDaSemana() {
-    
-        return this._http
-            .get('negociacoes/semana')
-            .then(
-                dados => 
-                    dados.map(objeto => 
-                        new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-                ,
-                err => {
 
-                    throw new Error('Não foi possível obter as negociações da semana');
-                }
+        return this._http
+            .get(`${SERVICE_URL}/negociacoes/semana`)
+            .then(
+            dados =>
+                dados.map(objeto =>
+                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
+            ,
+            err => {
+
+                throw new ApplicationException('Não foi possível obter as negociações da semana');
+            }
             );
     }
 
     obtemNegociacoesDaSemanaAnterior() {
-        
+
         return this._http
-            .get('negociacoes/anterior')
+            .get(`${SERVICE_URL}/negociacoes/anterior`)
             .then(
-                dados => dados.map(objeto =>
-                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-                ,
-                err => {
-                    
-                    throw new Error('Não foi possível obter as negociações da semana anterior');
-                }
+            dados => dados.map(objeto =>
+                new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
+            ,
+            err => {
+
+                throw new ApplicationException('Não foi possível obter as negociações da semana anterior');
+            }
             );
     }
 
     obtemNegociacoesDaSemanaRetrasada() {
-        
+
         return this._http
-            .get('negociacoes/retrasada')
+            .get(`${SERVICE_URL}/negociacoes/retrasada`)
             .then(
-                dados => dados.map(objeto =>
-                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-                ,
-                err => {
-                    throw new Error('Não foi possível obter as negociações da semana retrasada');
-                }
+            dados => dados.map(objeto =>
+                new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
+            ,
+            err => {
+                throw new ApplicationException('Não foi possível obter as negociações da semana retrasada');
+            }
             );
-    }  
+    }
 
-    obtemNegociacoesDoPeriodo() {
-        
-        return Promise.all([
-            this.obtemNegociacoesDaSemana(),
-            this.obtemNegociacoesDaSemanaAnterior(),
-            this.obtemNegociacoesDaSemanaRetrasada()
-        ])
-        .then(periodo => periodo
-            .reduce((novoArray, item) => novoArray.concat(item), [])
-            .sort((a, b) => b.data.getTime() - a.data.getTime())
-        )
-        .catch(err => {
+    async obtemNegociacoesDoPeriodo() {
 
+        try {
+            let periodo = await Promise.all([
+                this.obtemNegociacoesDaSemana(),
+                this.obtemNegociacoesDaSemanaAnterior(),
+                this.obtemNegociacoesDaSemanaRetrasada()
+            ]);
+            return periodo
+                .reduce((novoArray, item) => novoArray.concat(item), [])
+                .sort((a, b) => b.data.getTime() - a.data.getTime());
+
+        } catch (err) {
             console.log(err);
-            throw new Error('Não foi possível obter as negociações do período')
-        });
-    }             
+            throw new ApplicationException('Não foi possível obter as negociações do período')
+        };
+    }
 }
