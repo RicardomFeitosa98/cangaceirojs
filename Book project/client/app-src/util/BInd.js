@@ -1,14 +1,15 @@
-import	{	ProxyFactory	}	from	'./ProxyFactory.js';
-	export	class Bind	{
-/*	código	omitido	*/
-	}
-class Bind {
-	constructor(model, view, ...props)	{
-        const proxy	= ProxyFactory.create(model, props,	model	=>	{
-            view.update(model)
+import { ProxyFactory } from './ProxyFactory.js';
 
-	})
-    view.update(model);
-    return	proxy
-}
+export class Bind {
+
+    constructor(model, view, ...props) {
+
+       const proxy = ProxyFactory.create(model, props, model => {
+           view.update(model)
+       });
+
+       view.update(model);
+
+       return proxy;
+    }
 }

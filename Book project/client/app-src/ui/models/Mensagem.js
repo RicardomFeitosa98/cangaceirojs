@@ -1,18 +1,17 @@
-export	class Mensagem	{
-    
-        }
-class Mensagem {
-    constructor(texto = ""){
-     
+export class Mensagem {
+
+    constructor(texto = '') {
+        
         this._texto = texto
     }
 
-    get texto () {
-        return this._texto
-    }
-    set texto (texto){
+    get texto() {
 
-        this._texto= texto
+        return this._texto;
     }
 
+    set texto(texto) {
+
+        this._texto = texto;
+    }    
 }

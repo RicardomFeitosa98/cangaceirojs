@@ -1,6 +1,4 @@
-export	class Negociacao	{
-}
-class Negociacao {
+export class Negociacao {
 
     constructor(_data, _quantidade, _valor) {
         

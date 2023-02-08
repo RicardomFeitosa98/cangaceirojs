@@ -1,12 +1,11 @@
-import	{	View	}	from	'./View.js';
-export	class MensagemView	extends	View	{
+import { View } from './View.js';
 
-}
-class MensagemView extends View{
-      template(model){
+export class MensagemView extends View {
 
-        return	model.texto	
-        ? `<p class="alert alert-info">${model.texto}</p>`	
-        :`<p></p>`;
+    template(model) {
+
+        return model.texto
+            ? `<p class="alert alert-info">${model.texto}</p>`
+            : `<p></p>`;
     }
-   }
+}  

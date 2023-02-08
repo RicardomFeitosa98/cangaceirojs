@@ -1,10 +1,7 @@
-import	{	ConnectionFactory	}		from	'./ConnectionFactory.js';
-		import	{	NegociacaoDao	}	from	'../domain/negociacao/NegociacaoDao.js';
+import { ConnectionFactory }  from './ConnectionFactory.js';
+import { NegociacaoDao } from '../domain/negociacao/NegociacaoDao.js';
 
-	export	function getNegociacaoDao() {
-
-	}
-function getNegociacaoDao() {
+export function getNegociacaoDao() {
 
     return ConnectionFactory
         .getConnection()

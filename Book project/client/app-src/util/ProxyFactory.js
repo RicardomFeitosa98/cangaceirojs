@@ -1,14 +1,14 @@
-export	class ProxyFactory	{
-    /*	código	omitido	*/
-        }
-class	ProxyFactory	{
-	static create(objeto,	props,	armadilha)	{
-
-        return new Proxy(objeto,{
+export class ProxyFactory {
+    
+    static create(objeto, props, armadilha) {
+        
+        return new Proxy(objeto, {
+             
             get(target, prop, receiver) {
-            
-            if(ProxyFactory._ehFuncao(target[prop])&& props.includes(prop)) {
-                    
+                
+                if(ProxyFactory._ehFuncao(target[prop]) 
+                    && props.includes(prop)) {
+                
                     return function() {
 
                         console.log(`"${prop}" disparou a armadilha`);
@@ -16,23 +16,24 @@ class	ProxyFactory	{
                         armadilha(target);
                     }
 
-            } else {
+                } else {
 
-                return target[prop];
-            }
-        },
-            set(target,prop,value,receiver) {
-                const  updated	=Reflect.set(target, prop, value)
-                if(props.includes(prop)) armadilha(target);
-                return	updated;
+                    return target[prop];
+                }
+            },
 
+             set(target, prop, value, receiver) {
+                
+                 const updated = Reflect.set(target, prop, value);
+                 if(props.includes(prop)) armadilha(target);
+                 return updated;
+             }
+             
+         });
+   }
 
-
-            }});
-	}
-    static	_ehFuncao(fn)	{
+    static _ehFuncao(fn) {
 
         return typeof(fn) == typeof(Function);
-
-            }
+    }
 }
